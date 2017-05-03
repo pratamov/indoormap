@@ -6,16 +6,15 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 	version="2.1">
 	<persistence-unit name="camel" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>id.ac.itb.indoormap.model.Denah</class>
-		<class>id.ac.itb.indoormap.model.Gambar</class>
-		<class>id.ac.itb.indoormap.model.Geofence</class>
-		<class>id.ac.itb.indoormap.model.Ibeacon</class>
-		<class>id.ac.itb.indoormap.model.Lokasi</class>
-		<class>id.ac.itb.indoormap.model.Posisi</class>
-		<class>id.ac.itb.indoormap.model.Role</class>
-		<class>id.ac.itb.indoormap.model.User</class>
+		<class>id.ac.itb.indoormap.entity.Denah</class>
+		<class>id.ac.itb.indoormap.entity.Gambar</class>
+		<class>id.ac.itb.indoormap.entity.Geofence</class>
+		<class>id.ac.itb.indoormap.entity.Ibeacon</class>
+		<class>id.ac.itb.indoormap.entity.Lokasi</class>
+		<class>id.ac.itb.indoormap.entity.Role</class>
+		<class>id.ac.itb.indoormap.entity.User</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/itbmap" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/indoormap" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="asdqwe123" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

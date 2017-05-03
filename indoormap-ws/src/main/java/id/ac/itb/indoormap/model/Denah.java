@@ -1,135 +1,56 @@
 package id.ac.itb.indoormap.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
-
-/**
- * The persistent class for the denah database table.
- * 
- */
-@Entity
-@NamedQuery(name="Denah.findAll", query="SELECT d FROM Denah d")
-public class Denah implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	@Id
+public class Denah {
 	private int id;
-
-	//bi-directional many-to-one association to Lokasi
-	@ManyToOne
-	@JoinColumn(name="id_lokasi")
-	private Lokasi lokasi;
-
-	//bi-directional many-to-one association to Gambar
-	@ManyToOne
-	@JoinColumn(name="id_gambar")
-	private Gambar gambar;
-
-	//bi-directional many-to-one association to Geofence
-	@OneToMany(mappedBy="denah")
-	private List<Geofence> geofences;
-
-	//bi-directional many-to-one association to Ibeacon
-	@OneToMany(mappedBy="denah")
-	private List<Ibeacon> ibeacons;
-
-	//bi-directional many-to-one association to Posisi
-	@OneToMany(mappedBy="denah")
-	private List<Posisi> posisis;
-
-	public Denah() {
-	}
-
+	private int id_gambar;
+	private String url_gambar;
+	private double lebar_gambar;
+	private int id_lokasi;
+	private int id_role;
+	private String role_role;
+	
 	public int getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public Lokasi getLokasi() {
-		return this.lokasi;
+	public int getId_gambar() {
+		return id_gambar;
 	}
-
-	public void setLokasi(Lokasi lokasi) {
-		this.lokasi = lokasi;
+	public void setId_gambar(int id_gambar) {
+		this.id_gambar = id_gambar;
 	}
-
-	public Gambar getGambar() {
-		return this.gambar;
+	public String getUrl_gambar() {
+		return url_gambar;
 	}
-
-	public void setGambar(Gambar gambar) {
-		this.gambar = gambar;
+	public void setUrl_gambar(String url_gambar) {
+		this.url_gambar = url_gambar;
 	}
-
-	public List<Geofence> getGeofences() {
-		return this.geofences;
+	public double getLebar_gambar() {
+		return lebar_gambar;
 	}
-
-	public void setGeofences(List<Geofence> geofences) {
-		this.geofences = geofences;
+	public void setLebar_gambar(double lebar_gambar) {
+		this.lebar_gambar = lebar_gambar;
 	}
-
-	public Geofence addGeofence(Geofence geofence) {
-		getGeofences().add(geofence);
-		geofence.setDenah(this);
-
-		return geofence;
+	public int getId_lokasi() {
+		return id_lokasi;
 	}
-
-	public Geofence removeGeofence(Geofence geofence) {
-		getGeofences().remove(geofence);
-		geofence.setDenah(null);
-
-		return geofence;
+	public void setId_lokasi(int id_lokasi) {
+		this.id_lokasi = id_lokasi;
 	}
-
-	public List<Ibeacon> getIbeacons() {
-		return this.ibeacons;
+	public int getId_role() {
+		return id_role;
 	}
-
-	public void setIbeacons(List<Ibeacon> ibeacons) {
-		this.ibeacons = ibeacons;
+	public void setId_role(int id_role) {
+		this.id_role = id_role;
 	}
-
-	public Ibeacon addIbeacon(Ibeacon ibeacon) {
-		getIbeacons().add(ibeacon);
-		ibeacon.setDenah(this);
-
-		return ibeacon;
+	public String getRole_role() {
+		return role_role;
 	}
-
-	public Ibeacon removeIbeacon(Ibeacon ibeacon) {
-		getIbeacons().remove(ibeacon);
-		ibeacon.setDenah(null);
-
-		return ibeacon;
+	public void setRole_role(String role_role) {
+		this.role_role = role_role;
 	}
-
-	public List<Posisi> getPosisis() {
-		return this.posisis;
-	}
-
-	public void setPosisis(List<Posisi> posisis) {
-		this.posisis = posisis;
-	}
-
-	public Posisi addPosisi(Posisi posisi) {
-		getPosisis().add(posisi);
-		posisi.setDenah(this);
-
-		return posisi;
-	}
-
-	public Posisi removePosisi(Posisi posisi) {
-		getPosisis().remove(posisi);
-		posisi.setDenah(null);
-
-		return posisi;
-	}
-
+	
 }

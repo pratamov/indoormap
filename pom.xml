@@ -6,5 +6,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>indoormap-ws</module>
+  	<module>indoormap-rs</module>
   </modules>
 </project>

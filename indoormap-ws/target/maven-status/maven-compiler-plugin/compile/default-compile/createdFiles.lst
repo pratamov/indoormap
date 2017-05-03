@@ -1,9 +1,0 @@
-id\ac\itb\indoormap\route\WsRoute.class
-id\ac\itb\indoormap\model\Role.class
-id\ac\itb\indoormap\model\Denah.class
-id\ac\itb\indoormap\model\Geofence.class
-id\ac\itb\indoormap\model\Posisi.class
-id\ac\itb\indoormap\model\Lokasi.class
-id\ac\itb\indoormap\model\Gambar.class
-id\ac\itb\indoormap\model\Ibeacon.class
-id\ac\itb\indoormap\model\User.class
