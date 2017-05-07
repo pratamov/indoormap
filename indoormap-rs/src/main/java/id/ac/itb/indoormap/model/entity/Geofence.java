@@ -4,18 +4,25 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * The persistent class for the geofence database table.
  * 
  */
 @Entity
-@NamedQueries({
-	@NamedQuery(name="Geofence.findAll", query="SELECT g FROM Geofence g"),
-	@NamedQuery(name="Geofence.find", query="SELECT g FROM Geofence g WHERE g.id = :id")
+@NamedQueries({ @NamedQuery(name = "Geofence.findAll", query = "SELECT g FROM Geofence g"),
+		@NamedQuery(name = "Geofence.find", query = "SELECT g FROM Geofence g WHERE g.id = :id") })
+@NamedNativeQueries({
+		@NamedNativeQuery(name = "Geofence.findByLokasi", query = "select * from Geofence g where g.id_lokasi = :id", resultClass = Geofence.class),
+		@NamedNativeQuery(name = "Geofence.findByLokasiKoordinat", query = 
+			"select * from Geofence g where g.id_lokasi = :id AND (g.x1 <= :x AND g.x2 >= :x) AND (g.y1 <= :y AND g.y2 >= :y)", resultClass = Geofence.class)
 })
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")
 public class Geofence implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -35,10 +42,9 @@ public class Geofence implements Serializable {
 
 	private double y2;
 
-	//bi-directional many-to-one association to Lokasi
-	@ManyToOne
-	@JoinColumn(name="id_lokasi")
-	@JsonManagedReference
+	// bi-directional many-to-one association to Lokasi
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_lokasi")
 	private Lokasi lokasi;
 
 	public Geofence() {

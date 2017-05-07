@@ -1,4 +1,4 @@
-package id.ac.itb.indoormap.model.pojo;
+package id.ac.itb.indoormap.ws.model.pojo;
 
 import java.util.List;
 

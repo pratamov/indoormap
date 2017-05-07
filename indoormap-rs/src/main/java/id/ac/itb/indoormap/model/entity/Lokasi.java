@@ -4,7 +4,10 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.List;
 
@@ -18,6 +21,9 @@ import java.util.List;
 	@NamedQuery(name="Lokasi.findAll", query="SELECT l FROM Lokasi l"),
 	@NamedQuery(name="Lokasi.find", query="SELECT l FROM Lokasi l WHERE l.id = :id")
 })
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")
 public class Lokasi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,30 +37,30 @@ public class Lokasi implements Serializable {
 	private int gambarLebar;
 
 	@Column(name="gambar_url")
-	private int gambarUrl;
+	private String gambarUrl;
 
 	private String nama;
 
 	//bi-directional many-to-one association to Geofence
-	@OneToMany(mappedBy="lokasi")
-	@JsonManagedReference
+	@OneToMany(mappedBy="lokasi", cascade = CascadeType.ALL)
+	//@OneToMany(mappedBy="lokasi")
+	@JsonIgnore
 	private List<Geofence> geofences;
 
 	//bi-directional many-to-one association to Lokasi
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_lokasi")
-	@JsonManagedReference
 	private Lokasi lokasi;
 
 	//bi-directional many-to-one association to Lokasi
-	@OneToMany(mappedBy="lokasi")
-	@JsonBackReference
+	@OneToMany(mappedBy="lokasi", cascade = CascadeType.ALL)
+	//@OneToMany(mappedBy="lokasi")
+	@JsonIgnore
 	private List<Lokasi> lokasis;
 
 	//bi-directional many-to-one association to Role
 	@ManyToOne
 	@JoinColumn(name="id_role")
-	@JsonManagedReference
 	private Role role;
 
 	public Lokasi() {
@@ -84,11 +90,11 @@ public class Lokasi implements Serializable {
 		this.gambarLebar = gambarLebar;
 	}
 
-	public int getGambarUrl() {
+	public String getGambarUrl() {
 		return this.gambarUrl;
 	}
 
-	public void setGambarUrl(int gambarUrl) {
+	public void setGambarUrl(String gambarUrl) {
 		this.gambarUrl = gambarUrl;
 	}
 
@@ -121,7 +127,7 @@ public class Lokasi implements Serializable {
 
 		return geofence;
 	}
-
+	
 	public Lokasi getLokasi() {
 		return this.lokasi;
 	}

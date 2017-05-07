@@ -4,7 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.List;
 
@@ -18,6 +20,9 @@ import java.util.List;
 	@NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
 	@NamedQuery(name="User.find", query="SELECT u FROM User u WHERE u.id = :id")
 })
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -27,8 +32,9 @@ public class User implements Serializable {
 	private String password;
 
 	//bi-directional many-to-many association to Role
-	@ManyToMany
-	@JsonManagedReference
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+	//@ManyToMany()
+	//@JsonManagedReference
 	@JoinTable(
 		name="user_role"
 		, joinColumns={

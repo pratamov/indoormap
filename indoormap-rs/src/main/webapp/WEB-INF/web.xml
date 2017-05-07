@@ -9,18 +9,19 @@
 	</listener>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-        <param-value>classpath:camel-context.xml</param-value>
+		<param-value>classpath:camel-context.xml</param-value>
 	</context-param>
+
 	<servlet>
-		<servlet-name>ApiDeclarationServlet</servlet-name>
-		<servlet-class>org.apache.camel.component.swagger.DefaultCamelSwaggerServlet</servlet-class>
+		<servlet-name>SwaggerServlet</servlet-name>
+		<servlet-class>org.apache.camel.swagger.servlet.RestSwaggerServlet</servlet-class>
 		<init-param>
 			<param-name>base.path</param-name>
 			<param-value>rest</param-value>
 		</init-param>
 		<init-param>
 			<param-name>api.path</param-name>
-			<param-value>api-docs</param-value>
+			<param-value>api-docs/json</param-value>
 		</init-param>
 		<load-on-startup>2</load-on-startup>
 	</servlet>
@@ -32,25 +33,34 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<servlet>
+		<servlet-name>swaggerui</servlet-name>
+		<jsp-file>/swaggerui/index.jsp</jsp-file>
+	</servlet>
+
 	<servlet-mapping>
-		<servlet-name>ApiDeclarationServlet</servlet-name>
-		<url-pattern>/api-docs/*</url-pattern>
+		<servlet-name>swaggerui</servlet-name>
+		<url-pattern>/api-docs</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SwaggerServlet</servlet-name>
+		<url-pattern>/api-docs/json/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>CamelServlet</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
-<!-- 
+
 	<filter>
 		<filter-name>RestSwaggerCorsFilter</filter-name>
-		<filter-class>org.apache.camel.component.swagger.RestSwaggerCorsFilter</filter-class>
+		<filter-class>org.apache.camel.swagger.servlet.RestSwaggerCorsFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
 		<filter-name>RestSwaggerCorsFilter</filter-name>
-		<url-pattern>/api-docs/*</url-pattern>
+		<url-pattern>/api-docs/json/*</url-pattern>
 		<url-pattern>/rest/*</url-pattern>
 	</filter-mapping>
- -->
 </web-app>

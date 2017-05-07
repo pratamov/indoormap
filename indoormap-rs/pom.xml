@@ -12,6 +12,8 @@
 		<spring.boot.version>1.5.3.RELEASE</spring.boot.version>
 		<camel.version>2.18.3</camel.version>
 		<cxf-version>3.1.11</cxf-version>
+		<jpa.version></jpa.version>
+		<hibernate.version>4.3.6.Final</hibernate.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -22,7 +24,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.6.Final</version>
+			<version>${hibernate.version}</version>
 			<!-- <exclusions> <exclusion> <groupId>org.hibernate.javax.persistence</groupId> 
 				<artifactId>hibernate-jpa-2.1-api</artifactId> </exclusion> </exclusions> -->
 		</dependency>
@@ -86,7 +88,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-swagger</artifactId>
+			<artifactId>camel-swagger-java</artifactId>
 			<version>${camel.version}</version>
 		</dependency>
 		<!-- others -->

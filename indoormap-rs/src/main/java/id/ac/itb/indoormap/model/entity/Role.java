@@ -4,7 +4,10 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.List;
 
@@ -18,6 +21,9 @@ import java.util.List;
 	@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r"),
 	@NamedQuery(name="Role.find", query="SELECT r FROM Role r WHERE r.id = :id")
 })
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -28,13 +34,15 @@ public class Role implements Serializable {
 	private String deskripsi;
 
 	//bi-directional many-to-one association to Lokasi
-	@OneToMany(mappedBy="role")
-	@JsonBackReference
+	@OneToMany(mappedBy="role", cascade = CascadeType.ALL)
+	//@OneToMany(mappedBy="role")
+	@JsonIgnore
 	private List<Lokasi> lokasis;
 
 	//bi-directional many-to-many association to User
-	@ManyToMany(mappedBy="roles")
-	@JsonBackReference
+	@ManyToMany(mappedBy="roles", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	//@ManyToMany(mappedBy="roles")
+	@JsonIgnore
 	private List<User> users;
 
 	public Role() {
