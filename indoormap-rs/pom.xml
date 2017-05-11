@@ -10,7 +10,7 @@
 	<packaging>war</packaging>
 	<properties>
 		<spring.boot.version>1.5.3.RELEASE</spring.boot.version>
-		<camel.version>2.18.3</camel.version>
+		<camel.version>2.19.0</camel.version>
 		<cxf-version>3.1.11</cxf-version>
 		<jpa.version></jpa.version>
 		<hibernate.version>4.3.6.Final</hibernate.version>
