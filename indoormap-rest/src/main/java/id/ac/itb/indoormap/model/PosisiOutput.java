@@ -6,20 +6,13 @@ import id.ac.itb.indoormap.model.entity.Geofence;
 
 public class PosisiOutput {
 	
-	private double x;
-	private double y;
+	private Koordinat koordinat;
 	private List<Geofence> geofences;
-	public double getX() {
-		return x;
+	public Koordinat getKoordinat() {
+		return koordinat;
 	}
-	public void setX(double x) {
-		this.x = x;
-	}
-	public double getY() {
-		return y;
-	}
-	public void setY(double y) {
-		this.y = y;
+	public void setKoordinat(Koordinat koordinat) {
+		this.koordinat = koordinat;
 	}
 	public List<Geofence> getGeofences() {
 		return geofences;
@@ -27,6 +20,6 @@ public class PosisiOutput {
 	public void setGeofences(List<Geofence> geofences) {
 		this.geofences = geofences;
 	}
-
+	
 	
 }

@@ -2,26 +2,33 @@ package id.ac.itb.indoormap.model;
 
 public class Ibeacon {
 	
-	private int id1;
-	private int id2;
-	private int id3;
-	public int getId1() {
-		return id1;
+	private String uuid;
+	private int major;
+	private int minor;
+	private double distance;
+	public String getUuid() {
+		return uuid;
 	}
-	public void setId1(int id1) {
-		this.id1 = id1;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
-	public int getId2() {
-		return id2;
+	public int getMajor() {
+		return major;
 	}
-	public void setId2(int id2) {
-		this.id2 = id2;
+	public void setMajor(int major) {
+		this.major = major;
 	}
-	public int getId3() {
-		return id3;
+	public int getMinor() {
+		return minor;
 	}
-	public void setId3(int id3) {
-		this.id3 = id3;
+	public void setMinor(int minor) {
+		this.minor = minor;
+	}
+	public double getDistance() {
+		return distance;
+	}
+	public void setDistance(double distance) {
+		this.distance = distance;
 	}
 	
 	
