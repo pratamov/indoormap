@@ -1,59 +1,29 @@
 package id.ac.itb.indoormap.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-/**
- * The persistent class for the lokasi database table.
- * 
- */
-@Entity
-@NamedQueries({
-	@NamedQuery(name="Lokasi.findAll", query="SELECT l FROM Lokasi l"),
-	@NamedQuery(name="Lokasi.find", query="SELECT l FROM Lokasi l WHERE l.id = :id")
-})
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "id",
-		  scope = Lokasi.class)
+
 public class Lokasi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int id;
 
-	@Lob
 	private String deskripsi;
 
-	@Column(name="gambar_lebar")
 	private int gambarLebar;
 
-	@Column(name="gambar_url")
 	private String gambarUrl;
 
 	private String nama;
 
-	@OneToMany(mappedBy="lokasi", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnore
-	private List<Geofence> geofences;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_lokasi")
 	private Lokasi lokasi;
 
-	@OneToMany(mappedBy="lokasi", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnore
 	private List<Lokasi> lokasis;
 
-	@ManyToOne
-	@JoinColumn(name="id_role")
 	private Role role;
 
 	public Lokasi() {
@@ -97,28 +67,6 @@ public class Lokasi implements Serializable {
 
 	public void setNama(String nama) {
 		this.nama = nama;
-	}
-
-	public List<Geofence> getGeofences() {
-		return this.geofences;
-	}
-
-	public void setGeofences(List<Geofence> geofences) {
-		this.geofences = geofences;
-	}
-
-	public Geofence addGeofence(Geofence geofence) {
-		getGeofences().add(geofence);
-		geofence.setLokasi(this);
-
-		return geofence;
-	}
-
-	public Geofence removeGeofence(Geofence geofence) {
-		getGeofences().remove(geofence);
-		geofence.setLokasi(null);
-
-		return geofence;
 	}
 	
 	public Lokasi getLokasi() {

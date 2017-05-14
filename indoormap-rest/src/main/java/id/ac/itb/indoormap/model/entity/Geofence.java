@@ -1,4 +1,4 @@
-package id.ac.itb.indoormap.entity;
+package id.ac.itb.indoormap.model.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;

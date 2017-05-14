@@ -1,20 +1,19 @@
 package id.ac.itb.indoormap.controller;
 
 import java.io.FileNotFoundException;
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import id.ac.itb.indoormap.entity.User;
 import id.ac.itb.indoormap.model.Response;
+import id.ac.itb.indoormap.model.entity.User;
 import id.ac.itb.indoormap.repository.UserRepository;
 
 @RestController
@@ -25,9 +24,9 @@ public class UserController {
 	private UserRepository userRepository;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	Response insert(@RequestBody User user){
+	Response<User> insert(@RequestBody User user){
 		
-		Response response = new Response();
+		Response<User> response = new Response<User>();
 		try{
 			response.setResponseBody(userRepository.save(user));
 		}
@@ -39,9 +38,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	Response update(@RequestBody User user){
+	Response<User> update(@RequestBody User user){
 		
-		Response response = new Response();
+		Response<User> response = new Response<User>();
 		User userOld = userRepository.findOne(user.getId());
 		if (userOld == null)
 			setMessage(response, new FileNotFoundException());
@@ -53,27 +52,41 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	Response select(@PathVariable String id){
+	Response<User> select(@PathVariable String id){
 		
-		Response response = new Response();
+		Response<User> response = new Response<User>();
 		response.setResponseBody(userRepository.findOne(id));
 		return response;
 		
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
-	Response selectAll(){
+	@RequestMapping(value="/{id}", method = RequestMethod.GET, params={"password"})
+	Response<User> selectIdPassword(@PathVariable String id, @RequestParam String password){
 		
-		Response response = new Response();
+		Response<User> response = new Response<User>();
+		List<User> users = userRepository.findByIdPassword(id, password);
+		if (users.isEmpty())
+			response.setResponseBody(new User());
+		else
+			response.setResponseBody(users.get(0));
+		
+		return response;
+		
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	Response<List<User>> selectAll(){
+		
+		Response<List<User>> response = new Response<List<User>>();
 		response.setResponseBody(userRepository.findAll());
 		return response;
 		
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-	Response delete(@PathVariable String id){
+	Response<User> delete(@PathVariable String id){
 		
-		Response response = new Response();
+		Response<User> response = new Response<User>();
 		User user = userRepository.findOne(id);
 		if (user == null)
 			setMessage(response, new FileNotFoundException());

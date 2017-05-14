@@ -1,6 +1,7 @@
 package id.ac.itb.indoormap.controller;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -10,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import id.ac.itb.indoormap.entity.Geofence;
 import id.ac.itb.indoormap.model.Response;
+import id.ac.itb.indoormap.model.entity.Geofence;
 import id.ac.itb.indoormap.repository.GeofenceRepository;
 
 @RestController
@@ -23,9 +24,9 @@ public class GeofenceController {
 	private GeofenceRepository geofenceRepository;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	Response insert(@RequestBody Geofence geofence){
+	Response<Geofence> insert(@RequestBody Geofence geofence){
 		
-		Response response = new Response();
+		Response<Geofence> response = new Response<Geofence>();
 		try{
 			response.setResponseBody(geofenceRepository.save(geofence));
 		}
@@ -37,9 +38,9 @@ public class GeofenceController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	Response update(@RequestBody Geofence geofence){
+	Response<Geofence> update(@RequestBody Geofence geofence){
 		
-		Response response = new Response();
+		Response<Geofence> response = new Response<Geofence>();
 		Geofence geofenceOld = geofenceRepository.findOne(geofence.getId());
 		if (geofenceOld == null)
 			setMessage(response, new FileNotFoundException());
@@ -51,27 +52,27 @@ public class GeofenceController {
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	Response select(@PathVariable Integer id){
+	Response<Geofence> select(@PathVariable Integer id){
 		
-		Response response = new Response();
+		Response<Geofence> response = new Response<Geofence>();
 		response.setResponseBody(geofenceRepository.findOne(id));
 		return response;
 		
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	Response selectAll(){
+	Response<List<Geofence>> selectAll(){
 		
-		Response response = new Response();
+		Response<List<Geofence>> response = new Response<List<Geofence>>();
 		response.setResponseBody(geofenceRepository.findAll());
 		return response;
 		
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-	Response delete(@PathVariable Integer id){
+	Response<Geofence> delete(@PathVariable Integer id){
 		
-		Response response = new Response();
+		Response<Geofence> response = new Response<Geofence>();
 		Geofence geofence = geofenceRepository.findOne(id);
 		if (geofence == null)
 			setMessage(response, new FileNotFoundException());
