@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import id.ac.itb.indoormap.model.Response;
 import id.ac.itb.indoormap.model.entity.Role;
+import id.ac.itb.indoormap.model.response.Response;
 import id.ac.itb.indoormap.repository.RoleRepository;
 
 @RestController

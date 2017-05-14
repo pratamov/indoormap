@@ -1,4 +1,4 @@
-package id.ac.itb.indoormap.model;
+package id.ac.itb.indoormap.model.response;
 
 public class Response<RESPONSE_TYPE> {
 

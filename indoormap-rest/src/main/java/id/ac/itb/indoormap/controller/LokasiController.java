@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import id.ac.itb.indoormap.model.Response;
 import id.ac.itb.indoormap.model.entity.Geofence;
 import id.ac.itb.indoormap.model.entity.Lokasi;
+import id.ac.itb.indoormap.model.response.Response;
 import id.ac.itb.indoormap.repository.GeofenceRepository;
 import id.ac.itb.indoormap.repository.LokasiRepository;
 

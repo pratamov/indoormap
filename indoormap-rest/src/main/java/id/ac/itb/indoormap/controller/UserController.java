@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import id.ac.itb.indoormap.model.Response;
 import id.ac.itb.indoormap.model.entity.User;
+import id.ac.itb.indoormap.model.response.Response;
 import id.ac.itb.indoormap.repository.UserRepository;
 
 @RestController

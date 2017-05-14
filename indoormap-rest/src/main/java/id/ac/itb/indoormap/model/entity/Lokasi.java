@@ -27,18 +27,16 @@ public class Lokasi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private String id;
 
 	@Lob
 	private String deskripsi;
 
-	@Column(name="gambar_lebar")
-	private int gambarLebar;
+	@Column(name="denah_lebar")
+	private int denahLebar;
 
-	@Column(name="gambar_url")
-	private String gambarUrl;
-
-	private String nama;
+	@Column(name="denah_file")
+	private String denahFile;
 
 	@OneToMany(mappedBy="lokasi", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
@@ -59,11 +57,11 @@ public class Lokasi implements Serializable {
 	public Lokasi() {
 	}
 
-	public int getId() {
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -75,28 +73,20 @@ public class Lokasi implements Serializable {
 		this.deskripsi = deskripsi;
 	}
 
-	public int getGambarLebar() {
-		return this.gambarLebar;
+	public int getDenahLebar() {
+		return denahLebar;
 	}
 
-	public void setGambarLebar(int gambarLebar) {
-		this.gambarLebar = gambarLebar;
+	public void setDenahLebar(int denahLebar) {
+		this.denahLebar = denahLebar;
 	}
 
-	public String getGambarUrl() {
-		return this.gambarUrl;
+	public String getDenahFile() {
+		return denahFile;
 	}
 
-	public void setGambarUrl(String gambarUrl) {
-		this.gambarUrl = gambarUrl;
-	}
-
-	public String getNama() {
-		return this.nama;
-	}
-
-	public void setNama(String nama) {
-		this.nama = nama;
+	public void setDenahFile(String denahFile) {
+		this.denahFile = denahFile;
 	}
 
 	public List<Geofence> getGeofences() {

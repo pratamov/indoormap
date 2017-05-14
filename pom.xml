@@ -5,9 +5,7 @@
   <version>0.0.1</version>
   <packaging>pom</packaging>
   <modules>
-  	<module>indoormap-ws</module>
-  	<module>indoormap-rs</module>
   	<module>indoormap-rest</module>
-  	<module>indoormap-soap</module>
+  	<module>indoormap-api</module>
   </modules>
 </project>
