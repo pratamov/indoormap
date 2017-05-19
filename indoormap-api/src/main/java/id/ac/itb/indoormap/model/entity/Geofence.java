@@ -1,36 +1,12 @@
 package id.ac.itb.indoormap.model.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-/**
- * The persistent class for the geofence database table.
- * 
- */
-@Entity
-@NamedQueries({ @NamedQuery(name = "Geofence.findAll", query = "SELECT g FROM Geofence g"),
-		@NamedQuery(name = "Geofence.find", query = "SELECT g FROM Geofence g WHERE g.id = :id") })
-@NamedNativeQueries({
-		@NamedNativeQuery(name = "Geofence.findByLokasi", query = "select * from Geofence g where g.id_lokasi = :id", resultClass = Geofence.class),
-		@NamedNativeQuery(name = "Geofence.findByLokasiKoordinat", query = 
-			"select * from Geofence g where g.id_lokasi = :id AND (g.x1 <= :x AND g.x2 >= :x) AND (g.y1 <= :y AND g.y2 >= :y)", resultClass = Geofence.class)
-})
-/*
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "id",
-		  scope = Geofence.class)
-*/
 public class Geofence implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int id;
 
-	@Lob
 	private String deskripsi;
 
 	private String nama;
@@ -42,9 +18,7 @@ public class Geofence implements Serializable {
 	private double y1;
 
 	private double y2;
-
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_lokasi")
+	
 	private Lokasi lokasi;
 
 	public Geofence() {
@@ -105,7 +79,6 @@ public class Geofence implements Serializable {
 	public void setY2(double y2) {
 		this.y2 = y2;
 	}
-
 	public Lokasi getLokasi() {
 		return this.lokasi;
 	}

@@ -4,29 +4,22 @@ import java.util.List;
 
 public class PosisiOutput {
 	
-	private int lokasiId;
 	private String denahUrl;
-	private String denahLebar;
+	private double denahLebar;
 	private String nama;
 	private String deskripsi;
 	private List<Ruang> ruangs;
 	private Koordinat koordinat;
-	public int getLokasiId() {
-		return lokasiId;
-	}
-	public void setLokasiId(int lokasiId) {
-		this.lokasiId = lokasiId;
-	}
 	public String getDenahUrl() {
 		return denahUrl;
 	}
 	public void setDenahUrl(String denahUrl) {
 		this.denahUrl = denahUrl;
 	}
-	public String getDenahLebar() {
+	public double getDenahLebar() {
 		return denahLebar;
 	}
-	public void setDenahLebar(String denahLebar) {
+	public void setDenahLebar(double denahLebar) {
 		this.denahLebar = denahLebar;
 	}
 	public String getNama() {

@@ -57,7 +57,7 @@ public class LokasiController {
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	Response<Lokasi> select(@PathVariable Integer id){
+	Response<Lokasi> select(@PathVariable String id){
 		
 		Response<Lokasi> response = new Response<Lokasi>();
 		response.setResponseBody(lokasiRepository.findOne(id));
@@ -66,19 +66,10 @@ public class LokasiController {
 	}
 	
 	@RequestMapping(value="/{id}/geofences", method = RequestMethod.GET)
-	Response<List<Geofence>> selectGeofences(@PathVariable Integer id){
+	Response<List<Geofence>> selectGeofences(@PathVariable String id){
 		
 		Response<List<Geofence>> response = new Response<List<Geofence>>();
 		response.setResponseBody(geofenceRepository.findByLokasi(id));
-		return response;
-		
-	}
-	
-	@RequestMapping(value="/{id}/geofences", method = RequestMethod.GET, params={"x", "y"})
-	Response<List<Geofence>> selectGeofencesCoordinate(@PathVariable Integer id, @RequestParam double x, @RequestParam double y){
-		
-		Response<List<Geofence>> response = new Response<List<Geofence>>();
-		response.setResponseBody(geofenceRepository.findByLokasiKoordinat(id, x, y));
 		return response;
 		
 	}
@@ -93,7 +84,7 @@ public class LokasiController {
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-	Response<Lokasi> delete(@PathVariable Integer id){
+	Response<Lokasi> delete(@PathVariable String id){
 		
 		Response<Lokasi> response = new Response<Lokasi>();
 		Lokasi lokasi = lokasiRepository.findOne(id);

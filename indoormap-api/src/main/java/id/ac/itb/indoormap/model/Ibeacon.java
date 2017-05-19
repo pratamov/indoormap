@@ -30,7 +30,12 @@ public class Ibeacon {
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
-	
+	public double getX(){
+		return Math.round(minor/100);
+	}
+	public double getY(){
+		return minor%100;
+	}
 	
 	
 }

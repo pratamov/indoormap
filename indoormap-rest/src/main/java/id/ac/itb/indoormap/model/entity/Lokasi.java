@@ -19,10 +19,12 @@ import java.util.List;
 	@NamedQuery(name="Lokasi.findAll", query="SELECT l FROM Lokasi l"),
 	@NamedQuery(name="Lokasi.find", query="SELECT l FROM Lokasi l WHERE l.id = :id")
 })
+/*
 @JsonIdentityInfo(
 		  generator = ObjectIdGenerators.PropertyGenerator.class, 
 		  property = "id",
 		  scope = Lokasi.class)
+*/
 public class Lokasi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -32,6 +34,9 @@ public class Lokasi implements Serializable {
 	@Lob
 	private String deskripsi;
 
+	@Column(name="major")
+	private int major;
+	
 	@Column(name="denah_lebar")
 	private int denahLebar;
 
@@ -71,6 +76,14 @@ public class Lokasi implements Serializable {
 
 	public void setDeskripsi(String deskripsi) {
 		this.deskripsi = deskripsi;
+	}
+
+	public int getMajor() {
+		return major;
+	}
+
+	public void setMajor(int major) {
+		this.major = major;
 	}
 
 	public int getDenahLebar() {

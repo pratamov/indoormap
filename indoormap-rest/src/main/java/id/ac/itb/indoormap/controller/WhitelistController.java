@@ -16,7 +16,7 @@ import id.ac.itb.indoormap.model.response.Response;
 import id.ac.itb.indoormap.repository.WhitelistRepository;
 
 @RestController
-@RequestMapping(value="/whitelist")
+@RequestMapping(value="/whitelists")
 public class WhitelistController {
 	
 	@Autowired

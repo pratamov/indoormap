@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.ac.itb.indoormap.model.entity.Geofence;
@@ -56,6 +57,15 @@ public class GeofenceController {
 		
 		Response<Geofence> response = new Response<Geofence>();
 		response.setResponseBody(geofenceRepository.findOne(id));
+		return response;
+		
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, params={"x", "y", "major"})
+	Response<List<Geofence>> selectGeofencesCoordinateMajor(@RequestParam double x, @RequestParam double y, @RequestParam int major){
+		
+		Response<List<Geofence>> response = new Response<List<Geofence>>();
+		response.setResponseBody(geofenceRepository.findByKoordinat(x, y, major));
 		return response;
 		
 	}
